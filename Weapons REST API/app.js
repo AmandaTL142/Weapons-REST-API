@@ -42,7 +42,6 @@ app.post('/api/weapons', (req,res)=>{
 app.post('/api/weapons', (req,res)=>{
    
    const schema ={
-
        name: Joi.string().min(3).required
    };
 
@@ -71,9 +70,6 @@ app.put('/api/weapons/:id',(req,res)=>{
     const {error} =  validateWeapon(req.body) //equal to result.error
    
         if (error) return res.status(404).send(error.details[0].message)
-        
-    
-
 
     weapon.name = req.body.name;
 
@@ -84,9 +80,7 @@ function validateWeapon(weapon){
     const schema ={
         name: Joi.string().min(3).required
     };
- 
     return Joi.validate(weapon,schema)
-
 }
 
 module.exports.validateWeapon= validateWeapon();
@@ -103,7 +97,6 @@ app.delete('/api/weapons:id', (req,res)=>{
     const index = weapons.indexOf(weapons);
 
     weapons.splice(index,1)
-  
 
     res.send(weapon)
 
